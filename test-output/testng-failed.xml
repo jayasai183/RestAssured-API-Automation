@@ -5,7 +5,7 @@
     <classes>
       <class name="Pages.Beginner">
         <methods>
-          <include name="postTestWithPOJOClass"/>
+          <include name="pathParameters"/>
         </methods>
       </class> <!-- Pages.Beginner -->
     </classes>
