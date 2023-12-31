@@ -1,16 +1,17 @@
 package Pages;
 
 //In order to use REST assured effectively it's recommended to statically import methods from the following classes:
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
+import static io.restassured.RestAssured.*;
+import static io.restassured.matcher.RestAssuredMatchers.*;
+import static org.hamcrest.Matchers.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.util.Set;
 
-import org.json.JSONObject;
-import org.json.JSONTokener;
 import org.testng.annotations.Test;
+
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
+import io.restassured.response.Response;
 
 public class Beginner {
 
@@ -28,10 +29,8 @@ public class Beginner {
 //		  .body("data[0].id",equalTo(7))
 //		  .log().all();
 //	}
-	
-	
-	
-	//post request with request data using HashMap
+
+	// post request with request data using HashMap
 //	@Test
 //	public void postTestWithHashMap() {
 //		
@@ -53,8 +52,8 @@ public class Beginner {
 //		.log().all();
 //		
 //	}
-	
-	//post request with request body using org.json(JSONObject)
+
+	// post request with request body using org.json(JSONObject)
 //	@Test
 //	public void postTestWithJSONObj() {
 //		
@@ -76,8 +75,8 @@ public class Beginner {
 //		.log().all();
 //		
 //	}
-	
-	//post request with request body using POJOClass
+
+	// post request with request body using POJOClass
 //	@Test
 //	public void postTestWithPOJOClass() {
 //		
@@ -100,35 +99,106 @@ public class Beginner {
 //		.log().all();
 //		
 //	}
-	
-	//post request with request body using external Json file
-	@Test
-	public void postTestWithPOJOClass() throws FileNotFoundException {
+
+	// post request with request body using external Json file
+//	@Test
+//	
+//	public void postTestWithPOJOClass() throws FileNotFoundException {
+//		
+//		File file=new File(".//src/test/resources/JSONTestdata.json");
+//		FileReader fr=new FileReader(file);
+//		JSONTokener jt=new JSONTokener(fr);
+//		
+//		JSONObject data=new JSONObject(jt);
+//		
+//		
+//		data.put("name","sai");
+//		data.put("number","9030473710");
+//		data.put("address", "dwaraka");
+//		
+//		given()
+//		.contentType("application/json")
+//		.body(data.toString())
+//		.when()
+//		.post("https://reqres.in/api/users")
+//		.then()
+//		.statusCode(201)
+//		.body("name",equalTo("sai"))
+//		.body("number",equalTo("9030473710"))
+//		.log().all();
+//		
+//	}
+
+	// path parameters and query parameters
+//	@Test
+//	public void pathParameters(){
+//		
+//		given()
+//		 .pathParam("mypath","user")
+//		 .queryParam("page",2)
+//		.when()
+//		.get("https://reqres.in/api/{mypath}")
+//		.then()
+//		.statusCode(200)
+//		.log().all();
+//		
+//	}
+
+	// Cookies
+//	@Test
+//	public void cookies() {
+
+		//cookies storing in response variable
+//		Response res = given().when().get("https://flipkart.com");
+//		
+//		Map<String,String> cookies=res.getCookies();
+//		
+//		Set<String> cookiesKey=cookies.keySet();
+//		
+//		for(String cookie:cookiesKey) {
+//			System.out.println(res.getCookie(cookie));
+//		}
 		
-		File file=new File(".//src/test/resources/JSONTestdata.json");
-		FileReader fr=new FileReader(file);
-		JSONTokener jt=new JSONTokener(fr);
-		
-		JSONObject data=new JSONObject(jt);
-		
-		
-		data.put("name","sai");
-		data.put("number","9030473710");
-		data.put("address", "dwaraka");
-		
-		given()
-		.contentType("application/json")
-		.body(data.toString())
-		.when()
-		.post("https://reqres.in/api/users")
-		.then()
-		.statusCode(201)
-		.body("name",equalTo("sai"))
-		.body("number",equalTo("9030473710"))
-		.log().all();
-		
-	}
-	
-	
-	
+		//cookies directly through log()
+//		given()
+//		.when()
+//		.get("https://flipkart.com")
+//		.then()
+//		.log().cookies();
+
+//	}
+
+	 //Headers
+//		@Test
+//		public void headers() {
+//
+//		//headers storing in response variable
+//			Response res = given().when().get("https://flipkart.com");
+//			
+//			Headers headers=res.getHeaders();
+//			
+//			for(Header header:headers) {
+//				System.out.println(header.getName()+" "+header.getValue());
+//			}
+//		
+//		//cookies directly through log()
+//		given()
+//		.when()
+//		.get("https://flipkart.com")
+//		.then()
+//		.log().headers();
+//
+//}
 }
+			
+			
+
+
+
+
+
+
+
+
+
+
